@@ -126,7 +126,7 @@ Start your server by clicking Go Live
 ### Links
 
 - Solution URL: [Solution URL here](https://github.com/RomeesaKamal/REST-Countries--API-)
-- Live Site URL: [Live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Live site URL here]( https://romeesakamal.github.io/REST-Countries--API-/)
 
 ## My process
 
@@ -245,7 +245,7 @@ Data Visualizations: Use libraries like Chart.js or D3.js to display population 
 
 ## 🌎 Live Demo:
 
-- [Live Demo Link](romeesakamal.github.io/Recipe-website/)
+- [Live Demo Link]( https://romeesakamal.github.io/REST-Countries--API-/)
 
 ## Author
 
