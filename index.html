@@ -16,30 +16,34 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <meta name="description" content="A simple country search and filter application." />
+    <meta name="keywords" content="countries, search, filter, dark mode" />
   </head>
   <body>
     <header class="header-container">
       <div class="header-content">
         <h1 class="title"><a href="/">Where in the world?</a></h1>
-        <p class="theme-changer"><i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</p>
+        <p class="theme-changer">
+          <i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode
+        </p>
       </div>
     </header>
     <main>
       <div class="search-filter-container">
         <div class="search-container">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Search for a country...">
+          <input type="text" placeholder="Search for a country..." />
         </div>
         <div>
-        <select class="filter-by-region">
-          <option hidden>Filter by Region</option>
-          <option value="Africa">Africa</option>
-          <option value="America">America</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </select>
-      </div>
+          <select title="Filter by Region" class="filter-by-region">
+            <option hidden>Filter by Region</option>
+            <option value="Africa">Africa</option>
+            <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
       </div>
       <div class="countries-container"></div>
     </main>
