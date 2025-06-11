@@ -14,49 +14,61 @@ const borderCountries = document.querySelector('.border-countries')
 fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
   .then((res) => res.json())
   .then(([country]) => {
-    flagImage.src = country.flags.svg
-    countryNameH1.innerText = country.name.common
-    population.innerText = country.population.toLocaleString()
-    region.innerText = country.region
-    topLevelDomain.innerText = country.tld.join(', ')
+    flagImage.src = country.flags.svg || country.flags.png
+    countryNameH1.innerText = country.name.common || 'N/A'
+    population.innerText = country.population?.toLocaleString() || 'N/A'
+    region.innerText = country.region || 'N/A'
+    topLevelDomain.innerText = country.tld?.join(', ') || 'N/A'
+    capital.innerText = country.capital?.[0] || 'N/A'
+    subRegion.innerText = country.subregion || 'N/A'
 
-    if (country.capital) {
-      capital.innerText = country.capital?.[0]
-    }
-
-    if (country.subregion) {
-      subRegion.innerText = country.subregion
-    }
-
+    // ✅ Safely access native name
     if (country.name.nativeName) {
-      nativeName.innerText = Object.values(country.name.nativeName)[0].common
+      const nativeNames = Object.values(country.name.nativeName)
+      if (nativeNames.length > 0) {
+        nativeName.innerText = nativeNames[0].common
+      } else {
+        nativeName.innerText = country.name.common
+      }
     } else {
       nativeName.innerText = country.name.common
     }
 
+    // ✅ Safe access for currencies
     if (country.currencies) {
       currencies.innerText = Object.values(country.currencies)
         .map((currency) => currency.name)
         .join(', ')
+    } else {
+      currencies.innerText = 'N/A'
     }
 
+    // ✅ Safe access for languages
     if (country.languages) {
       languages.innerText = Object.values(country.languages).join(', ')
+    } else {
+      languages.innerText = 'N/A'
     }
 
-    console.log(country);
-    if (country.borders) {
-      
+    // ✅ Border countries
+    if (country.borders?.length) {
+      borderCountries.innerHTML = '' // clear existing
       country.borders.forEach((border) => {
         fetch(`https://restcountries.com/v3.1/alpha/${border}`)
           .then((res) => res.json())
           .then(([borderCountry]) => {
-            // console.log(borderCountry)
             const borderCountryTag = document.createElement('a')
             borderCountryTag.innerText = borderCountry.name.common
             borderCountryTag.href = `country.html?name=${borderCountry.name.common}`
             borderCountries.append(borderCountryTag)
           })
+          .catch((err) => console.error('Error fetching border country:', err))
       })
+    } else {
+      borderCountries.innerText = 'None'
     }
+
+  })
+  .catch((err) => {
+    console.error('Error fetching country:', err)
   })
